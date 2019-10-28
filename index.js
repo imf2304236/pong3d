@@ -12,6 +12,34 @@ const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerH
 camera.position.z = 10;
 camera.lookAt(scene.position);
 
+// Add lighting
+const ambientLight = new THREE.AmbientLight(0x909090);
+scene.add(ambientLight);
+const light = new THREE.DirectionalLight(0x444444);
+light.position.set( 1.5,1,1 );
+scene.add(light);
+
+// Create field
+const fieldWidth = 20;
+const fieldHeight = 40;
+const fieldColor = 'rgb(0, 255, 0)';
+const fieldGeometry = new THREE.PlaneBufferGeometry(fieldWidth, fieldHeight);
+const fieldMaterial = new THREE.MeshPhongMaterial({color: fieldColor});
+const field = new THREE.Mesh(fieldGeometry, fieldMaterial);
+field.rotateX(-Math.PI / 4);
+    // TODO: Add white line
+scene.add(field);
+
+// TODO: Create cushions
+    // TODO: Position cushions
+
+// TODO: Create ball
+    // TODO: Position ball
+    // TODO: Initilize ball velocity
+
+// TODO: Add player mode flag
+
+// Render loop
 function render(){
     requestAnimationFrame(render);
 
