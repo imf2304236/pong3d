@@ -9,7 +9,6 @@ renderer.setClearColor('rgb(255, 255, 255)');
 
 // Create scene & camera
 const scene = new THREE.Scene();
-scene.add(new THREE.AxesHelper());
 const camera = new THREE.PerspectiveCamera(
     75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.y = 20;
