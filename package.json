@@ -9,6 +9,7 @@
   "author": "Ian Fennie",
   "license": "ISC",
   "dependencies": {
+    "eslint": "^6.6.0",
     "three": "^0.109.0"
   }
 }
