@@ -1,6 +1,6 @@
 'use strict';
 
-const singlePlayerMode = true;
+const singlePlayerMode = false;
 
 // Initialize webGL Renderer
 const canvas = document.getElementById('mycanvas');
@@ -66,7 +66,21 @@ cushions[1].position.y = cushionHeight / 2;
 scene.add(cushions[0]);
 scene.add(cushions[1]);
 
-// Add back cushion (single player mode ONLY)
+// Create 1st player racket
+const racketWidth = cushionWidth;
+const racketLength = fieldWidth / 5;
+const racketHeight = cushionHeight;
+const racketColor1 = 'red';
+const racketGeometry = new THREE.BoxBufferGeometry(
+    racketWidth, racketHeight, racketLength);
+const racketMaterial1 = new THREE.MeshPhongMaterial({color: racketColor1});
+const racket1 = new THREE.Mesh(racketGeometry, racketMaterial1);
+racket1.position.y = cushionHeight / 2;
+racket1.position.z = fieldLength / 2 + racketWidth / 2;
+racket1.rotateY(Math.PI / 2);
+scene.add(racket1);
+
+// Create back cushion (single player mode ONLY)
 if (singlePlayerMode) {
   const backCushionGeometry = new THREE.BoxBufferGeometry(
       fieldWidth + 2 * cushionWidth, cushionHeight, cushionWidth,
@@ -77,10 +91,17 @@ if (singlePlayerMode) {
   backCushion.position.y = cushionHeight / 2;
   backCushion.position.z = -fieldLength / 2;
   scene.add(backCushion);
+} else {
+// Create 2nd player racket (double player mode ONLY)
+  const racketColor2 = 'blue';
+  const racketMaterial2 = new THREE.MeshPhongMaterial({color: racketColor2});
+  const racket2 = new THREE.Mesh(racketGeometry, racketMaterial2);
+  racket2.position.y = cushionHeight / 2;
+  racket2.position.z = - fieldLength / 2 + racketWidth / 2;
+  racket2.rotateY(Math.PI / 2);
+  scene.add(racket2);
 }
 
-// TODO: Add 1st player racket
-// TODO: Add 2nd player racket
 // TODO: Add racket control
 
 // Create ball
