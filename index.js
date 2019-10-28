@@ -10,8 +10,8 @@ const scene = new THREE.Scene();
 scene.add(new THREE.AxesHelper());
 const camera = new THREE.PerspectiveCamera(
     75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.y = 10;
-camera.position.z = 30;
+camera.position.y = 20;
+camera.position.z = 40;
 camera.lookAt(scene.position);
 
 // Add lighting
@@ -22,8 +22,8 @@ light.position.set(1.5, 1, 1);
 scene.add(light);
 
 // Create field
-const fieldWidth = 20;
-const fieldLength = 40;
+const fieldWidth = 30;
+const fieldLength = 60;
 const fieldColor = 'rgb(0, 255, 0)';
 const fieldGeometry = new THREE.PlaneBufferGeometry(fieldWidth, fieldLength);
 const fieldMaterial = new THREE.MeshPhongMaterial({
