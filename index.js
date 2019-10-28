@@ -1,5 +1,7 @@
 'use strict';
 
+const singlePlayerMode = true;
+
 // Initialize webGL Renderer
 const canvas = document.getElementById('mycanvas');
 const renderer = new THREE.WebGLRenderer({canvas: canvas});
@@ -78,8 +80,6 @@ scene.add(ball);
 // Initialize ball velocity
 const ballInitialVelocityX = Math.random() - 0.5 / 2;
 const ballInitialVelocityZ = ballInitialVelocityX;
-
-// TODO: Add player mode flag
 
 // Render loop
 const controls = new THREE.TrackballControls(camera, canvas);
