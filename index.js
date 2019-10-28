@@ -24,9 +24,9 @@ const fieldWidth = 20;
 const fieldHeight = 40;
 const fieldColor = 'rgb(0, 255, 0)';
 const fieldGeometry = new THREE.PlaneBufferGeometry(fieldWidth, fieldHeight);
-const fieldMaterial = new THREE.MeshPhongMaterial({color: fieldColor});
+const fieldMaterial = new THREE.MeshPhongMaterial({color: fieldColor, side: THREE.DoubleSide});
 const field = new THREE.Mesh(fieldGeometry, fieldMaterial);
-field.rotateX(-Math.PI / 4);
+field.rotateX(Math.PI / 2);
     // TODO: Add white line
 scene.add(field);
 
