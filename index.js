@@ -22,14 +22,24 @@ scene.add(light);
 
 // Create field
 const fieldWidth = 20;
-const fieldHeight = 40;
+const fieldLength = 40;
 const fieldColor = 'rgb(0, 255, 0)';
-const fieldGeometry = new THREE.PlaneBufferGeometry(fieldWidth, fieldHeight);
+const fieldGeometry = new THREE.PlaneBufferGeometry(fieldWidth, fieldLength);
 const fieldMaterial = new THREE.MeshPhongMaterial({color: fieldColor, side: THREE.DoubleSide});
 const field = new THREE.Mesh(fieldGeometry, fieldMaterial);
-field.rotateX(Math.PI / 2);
-    // TODO: Add white line
+field.rotateX(-Math.PI / 2);
 scene.add(field);
+
+// TODO: Add white line
+const lineWidth = fieldWidth;
+const lineLength = 1;
+const lineColor = 'white';
+const lineGeometry = new THREE.PlaneBufferGeometry(lineWidth, lineLength);
+const lineMaterial = new THREE.MeshBasicMaterial({color: lineColor});
+lineMaterial.depthTest = false; // removes artifacts
+const line = new THREE.Mesh(lineGeometry, lineMaterial);
+line.rotateX(-Math.PI / 2);
+scene.add(line);
 
 // TODO: Create cushions
     // TODO: Position cushions
