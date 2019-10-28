@@ -11,6 +11,7 @@
   "private": true,
   "dependencies": {
     "eslint": "^6.6.0",
-    "three": "^0.109.0"
+    "three": "^0.109.0",
+    "three-trackballcontrols": "0.0.8"
   }
 }
