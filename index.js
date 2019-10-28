@@ -40,9 +40,11 @@ scene.add(field);
 // TODO: Add player mode flag
 
 // Render loop
+const controls = new THREE.TrackballControls(camera, canvas);
 function render(){
     requestAnimationFrame(render);
 
+    controls.update();
     renderer.render(scene, camera);
 }
 
