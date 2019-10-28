@@ -17,7 +17,7 @@ camera.lookAt(scene.position);
 const ambientLight = new THREE.AmbientLight(0x909090);
 scene.add(ambientLight);
 const light = new THREE.DirectionalLight(0x444444);
-light.position.set( 1.5,1,1 );
+light.position.set(1.5, 1, 1);
 scene.add(light);
 
 // Create field
@@ -42,19 +42,36 @@ line.rotateX(-Math.PI / 2);
 scene.add(line);
 
 // TODO: Create cushions
-    // TODO: Position cushions
+const cushionWidth = 2;
+const cushionHeight = 2;
+const cushionLength = fieldLength;
+const cushionColor = 'rgb(55, 255, 55)';
+const cushionGeometry = new THREE.BoxBufferGeometry(
+    cushionWidth,
+    cushionHeight,
+    cushionLength);
+const cushionMaterial = new THREE.MeshPhongMaterial({color: cushionColor});
+const cushions = [new THREE.Mesh(cushionGeometry, cushionMaterial), new THREE.Mesh(cushionGeometry, cushionMaterial)];
+cushions[0].position.x = -(fieldWidth / 2 + cushionWidth / 2);
+cushions[1].position.x = fieldWidth / 2 + cushionWidth / 2;
+scene.add(cushions[0]);
+scene.add(cushions[1]);
 
 // TODO: Create ball
-    // TODO: Position ball
-    // TODO: Initilize ball velocity
+// TODO: Position ball
+// TODO: Initilize ball velocity
 
 // TODO: Add player mode flag
 
 // Render loop
 const controls = new THREE.TrackballControls(camera, canvas);
-function render(){
-    requestAnimationFrame(render);
 
+/**
+ * Renders frame
+ */
+function render() {
+    requestAnimationFrame(render);
+    
     controls.update();
     renderer.render(scene, camera);
 }
