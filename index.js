@@ -97,7 +97,7 @@ if (singlePlayerMode) {
   const racketMaterial2 = new THREE.MeshPhongMaterial({color: racketColor2});
   const racket2 = new THREE.Mesh(racketGeometry, racketMaterial2);
   racket2.position.y = cushionHeight / 2;
-  racket2.position.z = - fieldLength / 2 + racketWidth / 2;
+  racket2.position.z = - (fieldLength / 2 + racketWidth / 2);
   racket2.rotateY(Math.PI / 2);
   scene.add(racket2);
 }
