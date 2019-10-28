@@ -73,10 +73,11 @@ const ballMaterial = new THREE.MeshPhongMaterial({color: ballColor});
 const ball = new THREE.Mesh(ballGeometry, ballMaterial);
 ball.position.y = ballRadius;
 ball.position.x = Math.random() * (fieldWidth - ballRadius) - fieldWidth / 2;
-console.log(ball.position.x);
 scene.add(ball);
 
-// TODO: Initilize ball velocity
+// Initialize ball velocity
+const ballInitialVelocityX = Math.random() - 0.5 / 2;
+const ballInitialVelocityZ = ballInitialVelocityX;
 
 // TODO: Add player mode flag
 
@@ -88,6 +89,9 @@ const controls = new THREE.TrackballControls(camera, canvas);
  */
 function render() {
   requestAnimationFrame(render);
+
+  ball.position.x += ballInitialVelocityX;
+  ball.position.z += ballInitialVelocityZ;
 
   controls.update();
   renderer.render(scene, camera);
