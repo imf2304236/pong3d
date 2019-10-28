@@ -9,7 +9,8 @@ renderer.setClearColor('rgb(255, 255, 255)');
 const scene = new THREE.Scene();
 scene.add(new THREE.AxesHelper());
 const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 10;
+camera.position.y = 10;
+camera.position.z = 30;
 camera.lookAt(scene.position);
 
 // Add lighting
