@@ -48,7 +48,7 @@ line.rotateX(-Math.PI / 2);
 scene.add(line);
 
 // Create cushions
-const cushionWidth = 2;
+const cushionWidth = 1;
 const cushionHeight = 2;
 const cushionLength = fieldLength;
 const cushionColor = 'rgb(55, 255, 55)';
@@ -61,8 +61,27 @@ const cushions = [
 ];
 cushions[0].position.x = -(fieldWidth / 2 + cushionWidth / 2);
 cushions[1].position.x = fieldWidth / 2 + cushionWidth / 2;
+cushions[0].position.y = cushionHeight / 2;
+cushions[1].position.y = cushionHeight / 2;
 scene.add(cushions[0]);
 scene.add(cushions[1]);
+
+// Add back cushion (single player mode ONLY)
+if (singlePlayerMode) {
+  const backCushionGeometry = new THREE.BoxBufferGeometry(
+      fieldWidth + 2 * cushionWidth, cushionHeight, cushionWidth,
+  );
+  const backCushionMaterial = new THREE.MeshPhongMaterial({
+    color: cushionColor});
+  const backCushion = new THREE.Mesh(backCushionGeometry, backCushionMaterial);
+  backCushion.position.y = cushionHeight / 2;
+  backCushion.position.z = -fieldLength / 2;
+  scene.add(backCushion);
+}
+
+// TODO: Add 1st player racket
+// TODO: Add 2nd player racket
+// TODO: Add racket control
 
 // Create ball
 const ballRadius = 1;
