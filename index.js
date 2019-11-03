@@ -131,6 +131,16 @@ function render() {
 
   ball.position.add(ballVelocity);
 
+  // TODO: Add specular reflection
+  if (Math.abs(ball.position.z) <= cushionLength/2) {
+    if (ball.position.x + ballRadius > fieldWidth/2) {
+      ballVelocity.x = -Math.abs(ballVelocity.x);
+    }
+    if (ball.position.x - ballRadius < -fieldWidth/2) {
+      ballVelocity.x = Math.abs(ballVelocity.x);
+    }
+  }
+
   controls.update();
   renderer.render(scene, camera);
 }
