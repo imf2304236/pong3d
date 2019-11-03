@@ -117,8 +117,8 @@ ball.position.x = Math.random() * (fieldWidth - ballRadius) - fieldWidth / 2;
 scene.add(ball);
 
 // Initialize ball velocity
-const ballInitialVelocityX = Math.random() - 0.5 / 2;
-const ballInitialVelocityZ = ballInitialVelocityX;
+const ballVelocity = new THREE.Vector3(
+    Math.random() - 0.5, 0, Math.random() - 0.5);
 
 // Render loop
 const controls = new THREE.TrackballControls(camera, canvas);
@@ -129,8 +129,7 @@ const controls = new THREE.TrackballControls(camera, canvas);
 function render() {
   requestAnimationFrame(render);
 
-  ball.position.x += ballInitialVelocityX;
-  ball.position.z += ballInitialVelocityZ;
+  ball.position.add(ballVelocity);
 
   controls.update();
   renderer.render(scene, camera);
