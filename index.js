@@ -151,13 +151,30 @@ function render() {
 
   ball.position.add(ballVelocity);
 
-  // TODO: Add specular reflection
+  // Specular cushion reflection
   if (Math.abs(ball.position.z) <= cushionLength/2) {
     if (ball.position.x + ballRadius > fieldWidth/2) {
       ballVelocity.x = -Math.abs(ballVelocity.x);
     }
     if (ball.position.x - ballRadius < -fieldWidth/2) {
       ballVelocity.x = Math.abs(ballVelocity.x);
+    }
+  }
+
+  // Specular racket reflection
+  if ((ball.position.z + ballRadius > fieldLength/2) &&
+      ((ball.position.x >= racket1.position.x - racketLength/2) &&
+      (ball.position.x <= racket1.position.x + racketLength/2))) {
+    ballVelocity.z = -Math.abs(ballVelocity.z);
+  }
+  if (ball.position.z - ballRadius < -fieldLength/2) {
+    if (singlePlayerMode) {
+      ballVelocity.z = Math.abs(ballVelocity.z);
+    } else {
+      if ((ball.position.x >= racket2.position.x - racketLength/2) &&
+          (ball.position.x <= racket2.position.x + racketLength/2)) {
+        ballVelocity.z = Math.abs(ballVelocity.z);
+      }
     }
   }
 
