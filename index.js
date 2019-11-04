@@ -165,7 +165,8 @@ function render() {
         (ball.position.x <= racket1.position.x + racketLength/2)) {
       ballVelocity.z = -Math.abs(ballVelocity.z);
     } else {
-      ballVelocity.add(-ballVelocity);
+      ballVelocity.sub(ballVelocity);
+      console.log('Game over! Blue Wins!');
     }
   }
   if (ball.position.z - ballRadius < -fieldLength/2) {
@@ -176,7 +177,8 @@ function render() {
           (ball.position.x <= racket2.position.x + racketLength/2)) {
         ballVelocity.z = Math.abs(ballVelocity.z);
       } else {
-        ballVelocity.add(-ballVelocity);
+        ballVelocity.sub(ballVelocity);
+        console.log('Game over! Red Wins!');
       }
     }
   }
