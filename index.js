@@ -12,7 +12,7 @@ const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(
     75, window.innerWidth / window.innerHeight, 0.1, 1000);
 camera.position.y = 20;
-camera.position.z = 40;
+camera.position.z = 50;
 camera.lookAt(scene.position);
 
 // Add lighting
@@ -95,13 +95,33 @@ if (singlePlayerMode) {
   const racketColor2 = 'blue';
   const racketMaterial2 = new THREE.MeshPhongMaterial({color: racketColor2});
   const racket2 = new THREE.Mesh(racketGeometry, racketMaterial2);
+  racket2.name = 'racket2';
   racket2.position.y = cushionHeight / 2;
   racket2.position.z = - (fieldLength / 2 + racketWidth / 2);
   racket2.rotateY(Math.PI / 2);
   scene.add(racket2);
 }
+const racket2 = scene.getObjectByName('racket2');
 
-// TODO: Add racket control
+// Racket control
+const racketEventHandler = function(event, racket, keyCodeLeft, keyCodeRight) {
+  event.preventDefault();
+
+  if (event.keyCode === keyCodeLeft &&
+      racket.position.x - racketLength / 2 - 1 >= -fieldWidth / 2) {
+    racket.position.x -= 2;
+  }
+  if (event.keyCode === keyCodeRight &&
+      racket.position.x + racketLength / 2 + 1 <= fieldWidth / 2) {
+    racket.position.x += 2;
+  }
+};
+document.addEventListener('keydown',
+    (event) => racketEventHandler(event, racket1, 37, 39));
+if (!singlePlayerMode) {
+  document.addEventListener('keydown',
+      (event) => racketEventHandler(event, racket2, 65, 83));
+}
 
 // Create ball
 const ballRadius = 1;
